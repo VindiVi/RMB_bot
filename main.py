@@ -1,3 +1,5 @@
+#Programmed by tg:@m0ma1a
+
 import sqlite3
 import openpyxl
 import os
@@ -35,7 +37,7 @@ def syrrt(message):
         cur.execute(f"INSERT INTO users VALUES({message.chat.id})")
         base.commit()
         base.close
-        
+    #Programmed by tg:@m0ma1a    
     bot.send_message(message.chat.id, f"Приветствую, {message.from_user.username} 🙋\nАктуальный курс - {curs}!", reply_markup=kb_m1)
 def currrrs(message):
     cursa = message.text
@@ -49,7 +51,7 @@ def currrrs(message):
     cur = base.cursor()
     matras =cur.execute("SELECT * FROM users").fetchall()
     for i in matras:
-                print(i)
+                #Programmed by tg:@m0ma1a
                 bot.send_message(chat_id=i[0], text=f"Актуальный курс - {cursa}\nДля оформления заказа - vk.cc/cf1sGZ\nСпасибо, что остаетесь с нами.")
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
@@ -66,7 +68,7 @@ def callback_inline(call):
     elif call.data == "ex":
         msg = bot.send_message(call.message.chat.id,"Отправьте exel таблицу")
         bot.register_next_step_handler(msg,dooccc)
-       
+       #Programmed by tg:@m0ma1a
 def zakazst(message):
     try:
         zakaz = message.text
@@ -81,77 +83,77 @@ def zakazst(message):
         bot.send_message(message.chat.id,f"Актуальный статус вашего заказа - {stt}",reply_markup=kb_m)
     except:
         bot.send_message(message.chat.id, "Произошла ошибка, пожалуйста проверьте номер вашего заказа")
-@bot.message_handler(commands=['admin'])
+@bot.message_handler(commands=['admin'])#Programmed by tg:@m0ma1a
 def aaaaadd(message):
-    kb_ad = types.InlineKeyboardMarkup(row_width=1)
-    l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
-    l3 =  types.InlineKeyboardButton(text="Сменить Курс",callback_data="curr")
-    kb_ad.add(l3,l1)
-    bot.send_message(message.chat.id, "Меню админа\nПожалуйста используйте кнопки ниже",reply_markup=kb_ad)
-
+    if message.chat.id == "638426325":
+        kb_ad = types.InlineKeyboardMarkup(row_width=1)
+        l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
+        l3 =  types.InlineKeyboardButton(text="Сменить Курс",callback_data="curr")
+        kb_ad.add(l3,l1)
+        bot.send_message(message.chat.id, "Меню админа\nПожалуйста используйте кнопки ниже",reply_markup=kb_ad)
+    else:
+        pass
 def dooccc(message):
     connect = sqlite3.connect("db.db")
     cursor = connect.cursor()
+    save_dir = os.getcwd()
     cursor.execute("DELETE FROM cars")
-    connect.commit()
-    connect.close()
+    connect.commit()#Programmed by tg:@m0ma1a
     file_name = message.document.file_name
     file_info = bot.get_file(message.document.file_id)
     downloaded_file = bot.download_file(file_info.file_path)
     with open(file_name, 'wb') as new_file:
-    new_file.write(downloaded_file)
-    try:
-            print('11111')
-            prj_dir = os.path.abspath(os.path.curdir)
+        new_file.write(downloaded_file)
 
-            a = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    print('11111')
+    prj_dir = os.path.abspath(os.path.curdir)
 
-            # Имя базы
-            connect = sqlite3.connect("db.db")
-            cursor = connect.cursor()
+    a = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-            # создание таблицы если ее не существует
-            cursor.execute('CREATE TABLE IF NOT EXISTS cars (brand text, stat text)')   
-            # 2. Работа c xlsx файлом
+    # Имя базы
+    
 
-            # Читаем файл и лист1 книги excel
-            file_to_read = openpyxl.load_workbook('Cars.xlsx', data_only=True)
-            sheet = file_to_read['Sheet1']
+    # создание таблицы если ее не существует
+    cursor.execute('CREATE TABLE IF NOT EXISTS cars (brand text, stat text)')   
+    # 2. Работа c xlsx файлом
 
-            # Цикл по строкам начиная со второй (в первой заголовки)
+    # Читаем файл и лист1 книги excel
+    file_to_read = openpyxl.load_workbook('Cars.xlsx', data_only=True)
+    sheet = file_to_read['Sheet1']
 
-            for row in range(2, sheet.max_row + 1):
-                # Объявление списка
-                data = []
-                # Цикл по столбцам от 1 до 4 ( 5 не включая)
-                for col in range(1, 3):
-                    # value содержит значение ячейки с координатами row col
-                    value = sheet.cell(row, col).value
-                    # Список который мы потом будем добавлять
-                    data.append(value)
+    # Цикл по строкам начиная со второй (в первой заголовки)
 
-            # 3. Запись в базу и закрытие соединения
+    for row in range(2, sheet.max_row + 1):
+        # Объявление списка
+        data = []#Programmed by tg:@m0ma1a
+        # Цикл по столбцам от 1 до 4 ( 5 не включая)
+        for col in range(1, 3):
+            # value содержит значение ячейки с координатами row col
+            value = sheet.cell(row, col).value
+            # Список который мы потом будем добавлять
+            data.append(value)
 
-                # Вставка данных в поля таблицы
-                cursor.execute("INSERT INTO cars VALUES (?, ?);", (data[0], data[1]))
-            connect.commit()
-        # закрытие соединения
-            connect.close()
-            base = sqlite3.connect("db.db")
-            cur = base.cursor()
-            matras =cur.execute("SELECT * FROM users").fetchall()
-            for i in matras:
-                        print(i)
-                        bot.send_message(chat_id=i[0], text=f"Мы обновили статус для каждого заказа - проверяйте!")
-    except:
-        pass
+    # 3. Запись в базу и закрытие соединения
+
+        # Вставка данных в поля таблицы
+        cursor.execute("INSERT INTO cars VALUES (?, ?);", (data[0], data[1]))
+    connect.commit()
+# закрытие соединения
+    connect.close()#Programmed by tg:@m0ma1a
+    base = sqlite3.connect("db.db")
+    cur = base.cursor()
+    matras =cur.execute("SELECT * FROM users").fetchall()
+    for i in matras:
+                print(i)
+                bot.send_message(chat_id=i[0], text=f"Мы обновили статус для каждого заказа - проверяйте!")
+
 @bot.message_handler(content_types=['text'])
 def adaddad(message):
     if message.text == "Рассчитать стоимость заказа":
         a = types.ReplyKeyboardRemove()
         msg = bot.send_message(message.chat.id, "Укажите стоимость товара в юанях",reply_markup=a)
         bot.register_next_step_handler(msg,chenik)
-    elif message.text == "Узнать статус заказа":
+    elif message.text == "Узнать статус заказа":#Programmed by tg:@m0ma1a
         msg = bot.send_message(message.chat.id, "Укажите номер заказа")
         bot.register_next_step_handler(msg,zakazst)
     elif message.text == "Группа ВК":
@@ -164,7 +166,7 @@ def adaddad(message):
         kb1 = types.KeyboardButton(text="Рассчитать стоимость заказа")
         kb2 = types.KeyboardButton(text="Узнать статус заказа")
         kb3 = types.KeyboardButton(text="Частые вопросы по заказам")
-        kb_m.add(kb1,kb2,kb3)
+        kb_m.add(kb1,kb2,kb3)#Programmed by tg:@m0ma1a
         bot.send_message(message.chat.id, "Вы попали в Меню\nПожалуйста используйте кнопки ниже",reply_markup=kb_m)
     elif message.text == "Частые вопросы по заказам":
         kb_a = types.ReplyKeyboardMarkup(row_width=2,resize_keyboard=True)
@@ -176,10 +178,10 @@ def adaddad(message):
         p1 = types.KeyboardButton(text="Назад")
         kb_a.row(kb1a).add(kb2a,kb3a).add(kb4a,kb5a).row(p1)
         bot.send_message(message.chat.id,"Выберете пункт в меню ниже",reply_markup=kb_a)
-    elif message.text == "Отзывы" :
+    elif message.text == "Отзывы" :#Programmed by tg:@m0ma1a
         kb_ot = types.InlineKeyboardMarkup()
         k11 = types.InlineKeyboardButton(text="Отзывы",url="http://vk.cc/9IZVTn")
-        kb_ot.add(k11)
+        kb_ot.add(k11)#Programmed by tg:@m0ma1a
         bot.send_message(message.chat.id,"Отзывы о нашем проекте вы можете посмотреть тут",reply_markup=kb_ot)
     elif message.text == "Оригинальная продукция?":
         bot.send_message(message.chat.id,f"Да, исключительно оригинальные и аутентичные товары, которые проходят проверку на складе Poizon.\nЛюбые проверки с вашей стороны!")
@@ -192,7 +194,7 @@ def adaddad(message):
     elif message.text == "Можно ли доставить заказ в другой город?":
         bot.send_message(message.chat.id,f"Да, можно! Мы можем отправить следующими курьерскими службами на ваш выбор:\nСДЭК или Почта России.\nДля этого укажите свои данные для отправки при оформлении заказа.")
 
-
+#Programmed by tg:@m0ma1a
 
 def chenik(message):
     try:
@@ -217,7 +219,7 @@ def chenik(message):
             if proc < 1000:
                 proc = 1000
             else:
-                pass
+                pass#Programmed by tg:@m0ma1a
             kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
             kb1 = types.KeyboardButton(text="Рассчитать стоимость заказа")
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
@@ -232,13 +234,40 @@ def chenik(message):
             if proc < 1600:
                 proc = 1600
             else:
-                pass
+                pass#Programmed by tg:@m0ma1a
             kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
             kb1 = types.KeyboardButton(text="Рассчитать стоимость заказа")
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
             kb3 = types.KeyboardButton(text="Частые вопросы по заказам")
             kb_m.add(kb1,kb2,kb3)
             bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
-    except:
+    except:#Programmed by tg:@m0ma1a
         bot.send_message(message.chat.id, "Неверная команда")
-bot.polling(non_stop=True)
+bot.polling(non_stop=True)#Programmed by tg:@m0ma1a
+
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
+#Programmed by tg:@m0ma1a
