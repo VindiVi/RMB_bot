@@ -6,6 +6,11 @@ import os
 import telebot
 from telebot import types
 from decimal import *
+
+from decouple import config
+
+API_TOKEN = config('API_TOKEN')
+
 base = sqlite3.connect("db.db")
 cur = base.cursor()
 cur.execute("""CREATE TABLE IF NOT EXiSTS list (
