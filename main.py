@@ -6,11 +6,6 @@ import os
 import telebot
 from telebot import types
 from decimal import *
-
-from decouple import config
-
-API_TOKEN = config('API_TOKEN')
-
 base = sqlite3.connect("db.db")
 cur = base.cursor()
 cur.execute("""CREATE TABLE IF NOT EXiSTS list (
@@ -20,17 +15,19 @@ cur.execute("""CREATE TABLE IF NOT EXiSTS users (
     id TEXT
 )""")
 base.commit()
-curs = cur.execute("SELECT curss FROM list").fetchone()[0]
-bot = telebot.TeleBot(API_TOKEN)
+base.close()
+
+bot = telebot.TeleBot("5403188495:AAHTFEpSlG9Vp0vChWeOkWsHvhv_r_Tuwy0")
 @bot.message_handler(commands=['start'])
 def syrrt(message):
+    base = sqlite3.connect("db.db")
+    cur = base.cursor()
+    curs = cur.execute("SELECT curss FROM list").fetchone()[0]
     kb_m1 = types.InlineKeyboardMarkup(row_width=1)
     km1 = types.InlineKeyboardButton(text="Меню",callback_data="mn")
     km2 = types.InlineKeyboardButton(text = "Наша группа в VK",url="https://vk.cc/ceYh39")
     km3 = types.InlineKeyboardButton(text = "Наши отзывы в VK",url = "http://vk.cc/9IZVTn")
     kb_m1.add(km1,km3,km2)
-    base = sqlite3.connect("db.db")
-    cur = base.cursor()
     try:
         freq = cur.execute(f"SELECT * FROM users WHERE id='{message.chat.id}'").fetchone()[0]
     except:
@@ -43,7 +40,7 @@ def currrrs(message):
     cursa = message.text
     base = sqlite3.connect("db.db")
     cur = base.cursor()
-    cur.execute(f"UPDATE list SET curss = ({cursa})")
+    cur.execute(f"UPDATE list SET curss = {cursa}")
     base.commit()
     base.close()    
     bot.send_message(message.chat.id,"Курс успешно измнен")
@@ -85,14 +82,13 @@ def zakazst(message):
         bot.send_message(message.chat.id, "Произошла ошибка, пожалуйста проверьте номер вашего заказа")
 @bot.message_handler(commands=['admin'])#Programmed by tg:@m0ma1a
 def aaaaadd(message):
-    if message.chat.id == "638426325":
+    
         kb_ad = types.InlineKeyboardMarkup(row_width=1)
         l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
         l3 =  types.InlineKeyboardButton(text="Сменить Курс",callback_data="curr")
         kb_ad.add(l3,l1)
         bot.send_message(message.chat.id, "Меню админа\nПожалуйста используйте кнопки ниже",reply_markup=kb_ad)
-    else:
-        pass
+        
 def dooccc(message):
     connect = sqlite3.connect("db.db")
     cursor = connect.cursor()
