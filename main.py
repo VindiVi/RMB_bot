@@ -39,7 +39,7 @@ def syrrt(message):
         cur.execute(f"INSERT INTO users VALUES({message.chat.id})")
         base.commit()
         base.close
-    #Programmed by tg:@m0ma1a    
+    #Programmed by tg:@m0ma1a
     bot.send_message(message.chat.id, f"Приветствую, {message.from_user.username} 🙋\nАктуальный курс - {curs}!", reply_markup=kb_m1)
 def currrrs(message):
     cursa = message.text
@@ -47,7 +47,7 @@ def currrrs(message):
     cur = base.cursor()
     cur.execute(f"UPDATE list SET curss = {cursa}")
     base.commit()
-    base.close()    
+    base.close()
     bot.send_message(message.chat.id,"Курс успешно измнен")
     base = sqlite3.connect("db.db")
     cur = base.cursor()
@@ -87,13 +87,15 @@ def zakazst(message):
         bot.send_message(message.chat.id, "Произошла ошибка, пожалуйста проверьте номер вашего заказа")
 @bot.message_handler(commands=['admin'])#Programmed by tg:@m0ma1a
 def aaaaadd(message):
-    
+    if message.chat.id == "638426325":
         kb_ad = types.InlineKeyboardMarkup(row_width=1)
         l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
         l3 =  types.InlineKeyboardButton(text="Сменить Курс",callback_data="curr")
         kb_ad.add(l3,l1)
         bot.send_message(message.chat.id, "Меню админа\nПожалуйста используйте кнопки ниже",reply_markup=kb_ad)
-        
+    else:
+        pass
+
 def dooccc(message):
     connect = sqlite3.connect("db.db")
     cursor = connect.cursor()
@@ -112,10 +114,10 @@ def dooccc(message):
     a = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     # Имя базы
-    
+
 
     # создание таблицы если ее не существует
-    cursor.execute('CREATE TABLE IF NOT EXISTS cars (brand text, stat text)')   
+    cursor.execute('CREATE TABLE IF NOT EXISTS cars (brand text, stat text)')
     # 2. Работа c xlsx файлом
 
     # Читаем файл и лист1 книги excel
@@ -198,16 +200,19 @@ def adaddad(message):
 #Programmed by tg:@m0ma1a
 
 def chenik(message):
+    base = sqlite3.connect("db.db")
+    cur = base.cursor()
+    curs = cur.execute("SELECT curss FROM list").fetchone()[0]
     try:
-        
+
         if int(message.text) <= 2000:
             si = Decimal(int(message.text)+28)*Decimal(curs)//1
-            proc = si / 100 * 5 
+            proc = si / 100 * 5
             if proc <= 500:
                 proc = 500
             else:
                 pass
-            
+
             kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
             kb1 = types.KeyboardButton(text="Рассчитать стоимость заказа")
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
@@ -244,6 +249,7 @@ def chenik(message):
             bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
     except:#Programmed by tg:@m0ma1a
         bot.send_message(message.chat.id, "Неверная команда")
+    base.close()
 bot.polling(non_stop=True)#Programmed by tg:@m0ma1a
 
 #Programmed by tg:@m0ma1a
