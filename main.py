@@ -95,6 +95,11 @@ def dooccc(message):
     cursor.execute("DELETE FROM cars")
     connect.commit()
     connect.close()
+    file_name = message.document.file_name
+    file_info = bot.get_file(message.document.file_id)
+    downloaded_file = bot.download_file(file_info.file_path)
+    with open(file_name, 'wb') as new_file:
+    new_file.write(downloaded_file)
     try:
             print('11111')
             prj_dir = os.path.abspath(os.path.curdir)
