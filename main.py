@@ -8,7 +8,7 @@ from telebot import types
 from decimal import *
 
 from decouple import config
-API_TOKEN = config('API_TOKEN')
+API_TOKEN = config('')
 
 base = sqlite3.connect("db.db")
 cur = base.cursor()
@@ -51,11 +51,12 @@ def currrrs(message):
     base = sqlite3.connect("db.db")
     cur = base.cursor()
     matras =cur.execute("SELECT * FROM users").fetchall()
-    print('my chat id',message.chat.id)
-    for i in matras:
-        #Programmed by tg:@m0ma1a
-        print('chat in bd',i[0])
-        bot.send_message(chat_id=i[0], text=f"Актуальный курс - {cursa}\nДля оформления заказа - vk.cc/cf1sGZ\nСпасибо, что остаетесь с нами.")
+    try:
+        for i in matras:
+                #Programmed by tg:@m0ma1a
+                bot.send_message(chat_id=i[0], text=f"Актуальный курс - {cursa}\nДля оформления заказа - vk.cc/cf1sGZ\nСпасибо, что остаетесь с нами.")
+    except:
+        pass
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.data == "mn":
@@ -74,7 +75,7 @@ def callback_inline(call):
        #Programmed by tg:@m0ma1a
 def zakazst(message):
     try:
-        zakaz = message.textа
+        zakaz = message.text
         base = sqlite3.connect("db.db")
         cur = base.cursor()
         stt = cur.execute(f"SELECT stat FROM cars WHERE brand ='{zakaz}'").fetchone()[0]
@@ -88,13 +89,14 @@ def zakazst(message):
         bot.send_message(message.chat.id, "Произошла ошибка, пожалуйста проверьте номер вашего заказа")
 @bot.message_handler(commands=['admin'])#Programmed by tg:@m0ma1a
 def aadd(message):
-    print(f"({message.chat.id})")
-    kb_ad = types.InlineKeyboardMarkup(row_width=1)
-    l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
-    l3 =  types.InlineKeyboardButton(text="Сменить Курс",callback_data="curr")
-    kb_ad.add(l3,l1)
-    bot.send_message(message.chat.id, "Меню админа\nПожалуйста используйте кнопки ниже",reply_markup=kb_ad)
-
+    if message.chat.id == 638426325:
+        kb_ad = types.InlineKeyboardMarkup(row_width=1)
+        l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
+        l3 =  types.InlineKeyboardButton(text="Сменить Курс",callback_data="curr")
+        kb_ad.add(l3,l1)
+        bot.send_message(message.chat.id, "Меню админа\nПожалуйста используйте кнопки ниже",reply_markup=kb_ad)
+    else:
+        pass
         
 def dooccc(message):
     
