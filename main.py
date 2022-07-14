@@ -24,6 +24,7 @@ base.close()
 bot = telebot.TeleBot(API_TOKEN)
 @bot.message_handler(commands=['start'])
 def syrrt(message):
+    print('kldsfnsa',message.chat.id)
     base = sqlite3.connect("db.db")
     cur = base.cursor()
     curs = cur.execute("SELECT curss FROM list").fetchone()[0]
@@ -87,7 +88,6 @@ def zakazst(message):
         bot.send_message(message.chat.id, "Произошла ошибка, пожалуйста проверьте номер вашего заказа")
 @bot.message_handler(commands=['admin'])#Programmed by tg:@m0ma1a
 def aaaaadd(message):
-    print(message.chat.id)
     if message.chat.id == 936407533:
         kb_ad = types.InlineKeyboardMarkup(row_width=1)
         l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
