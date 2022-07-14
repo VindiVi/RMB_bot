@@ -6,10 +6,6 @@ import os
 import telebot
 from telebot import types
 from decimal import *
-
-from decouple import config
-API_TOKEN = config('API_TOKEN')
-
 base = sqlite3.connect("db.db")
 cur = base.cursor()
 cur.execute("""CREATE TABLE IF NOT EXiSTS list (
@@ -21,7 +17,7 @@ cur.execute("""CREATE TABLE IF NOT EXiSTS users (
 base.commit()
 base.close()
 
-bot = telebot.TeleBot(API_TOKEN)
+bot = telebot.TeleBot("5403188495:AAHTFEpSlG9Vp0vChWeOkWsHvhv_r_Tuwy0")
 @bot.message_handler(commands=['start'])
 def syrrt(message):
     base = sqlite3.connect("db.db")
@@ -38,16 +34,15 @@ def syrrt(message):
         cur.execute(f"INSERT INTO users VALUES({message.chat.id})")
         base.commit()
         base.close
-    #Programmed by tg:@m0ma1a
+    #Programmed by tg:@m0ma1a    
     bot.send_message(message.chat.id, f"Приветствую, {message.from_user.username} 🙋\nАктуальный курс - {curs}!", reply_markup=kb_m1)
-    print(message.chat.id)
 def currrrs(message):
     cursa = message.text
     base = sqlite3.connect("db.db")
     cur = base.cursor()
     cur.execute(f"UPDATE list SET curss = {cursa}")
     base.commit()
-    base.close()
+    base.close()    
     bot.send_message(message.chat.id,"Курс успешно измнен")
     base = sqlite3.connect("db.db")
     cur = base.cursor()
@@ -86,70 +81,70 @@ def zakazst(message):
     except:
         bot.send_message(message.chat.id, "Произошла ошибка, пожалуйста проверьте номер вашего заказа")
 @bot.message_handler(commands=['admin'])#Programmed by tg:@m0ma1a
-def aaaaadd(message):
-    if message.chat.id == 638426325:
-        kb_ad = types.InlineKeyboardMarkup(row_width=1)
-        l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
-        l3 =  types.InlineKeyboardButton(text="Сменить Курс",callback_data="curr")
-        kb_ad.add(l3,l1)
-        bot.send_message(message.chat.id, "Меню админа\nПожалуйста используйте кнопки ниже",reply_markup=kb_ad)
-    else:
-        pass
+def aadd(message):
+    print(f"({message.chat.id})")
+    kb_ad = types.InlineKeyboardMarkup(row_width=1)
+    l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
+    l3 =  types.InlineKeyboardButton(text="Сменить Курс",callback_data="curr")
+    kb_ad.add(l3,l1)
+    bot.send_message(message.chat.id, "Меню админа\nПожалуйста используйте кнопки ниже",reply_markup=kb_ad)
 
+        
 def dooccc(message):
-    connect = sqlite3.connect("db.db")
-    cursor = connect.cursor()
-    save_dir = os.getcwd()
-    cursor.execute("DELETE FROM cars")
-    connect.commit()#Programmed by tg:@m0ma1a
-    file_name = message.document.file_name
-    file_info = bot.get_file(message.document.file_id)
-    downloaded_file = bot.download_file(file_info.file_path)
-    with open(file_name, 'wb') as new_file:
-        new_file.write(downloaded_file)
+    
+        connect = sqlite3.connect("db.db")
+        cursor = connect.cursor()
+        save_dir = os.getcwd()
+        cursor.execute("DELETE FROM cars")
+        connect.commit()#Programmed by tg:@m0ma1a
+        file_name = message.document.file_name
+        file_info = bot.get_file(message.document.file_id)
+        downloaded_file = bot.download_file(file_info.file_path)
+        with open(file_name, 'wb') as new_file:
+            new_file.write(downloaded_file)
 
-    print('11111')
-    prj_dir = os.path.abspath(os.path.curdir)
+        print('11111')
+        prj_dir = os.path.abspath(os.path.curdir)
 
-    a = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        a = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-    # Имя базы
+        # Имя базы
+        
 
+        # создание таблицы если ее не существует
+        cursor.execute('CREATE TABLE IF NOT EXISTS cars (brand text, stat text)')   
+        # 2. Работа c xlsx файлом
 
-    # создание таблицы если ее не существует
-    cursor.execute('CREATE TABLE IF NOT EXISTS cars (brand text, stat text)')
-    # 2. Работа c xlsx файлом
+        # Читаем файл и лист1 книги excel
+        file_to_read = openpyxl.load_workbook('Cars.xlsx', data_only=True)
+        sheet = file_to_read['Sheet1']
 
-    # Читаем файл и лист1 книги excel
-    file_to_read = openpyxl.load_workbook('Cars.xlsx', data_only=True)
-    sheet = file_to_read['Sheet1']
+        # Цикл по строкам начиная со второй (в первой заголовки)
 
-    # Цикл по строкам начиная со второй (в первой заголовки)
+        for row in range(2, sheet.max_row + 1):
+            # Объявление списка
+            data = []#Programmed by tg:@m0ma1a
+            # Цикл по столбцам от 1 до 4 ( 5 не включая)
+            for col in range(1, 3):
+                # value содержит значение ячейки с координатами row col
+                value = sheet.cell(row, col).value
+                # Список который мы потом будем добавлять
+                data.append(value)
 
-    for row in range(2, sheet.max_row + 1):
-        # Объявление списка
-        data = []#Programmed by tg:@m0ma1a
-        # Цикл по столбцам от 1 до 4 ( 5 не включая)
-        for col in range(1, 3):
-            # value содержит значение ячейки с координатами row col
-            value = sheet.cell(row, col).value
-            # Список который мы потом будем добавлять
-            data.append(value)
+        # 3. Запись в базу и закрытие соединения
 
-    # 3. Запись в базу и закрытие соединения
-
-        # Вставка данных в поля таблицы
-        cursor.execute("INSERT INTO cars VALUES (?, ?);", (data[0], data[1]))
-    connect.commit()
-# закрытие соединения
-    connect.close()#Programmed by tg:@m0ma1a
-    base = sqlite3.connect("db.db")
-    cur = base.cursor()
-    matras =cur.execute("SELECT * FROM users").fetchall()
-    for i in matras:
-                print(i)
-                bot.send_message(chat_id=i[0], text=f"Мы обновили статус для каждого заказа - проверяйте!")
-
+            # Вставка данных в поля таблицы
+            cursor.execute("INSERT INTO cars VALUES (?, ?);", (data[0], data[1]))
+        connect.commit()
+    # закрытие соединения
+        connect.close()#Programmed by tg:@m0ma1a
+        base = sqlite3.connect("db.db")
+        cur = base.cursor()
+        matras =cur.execute("SELECT * FROM users").fetchall()
+        for i in matras:
+                    print(i)
+                    bot.send_message(chat_id=i[0], text=f"Мы обновили статус для каждого заказа - проверяйте!")
+   
 @bot.message_handler(content_types=['text'])
 def adaddad(message):
     if message.text == "Рассчитать стоимость заказа":
@@ -204,15 +199,15 @@ def chenik(message):
     cur = base.cursor()
     curs = cur.execute("SELECT curss FROM list").fetchone()[0]
     try:
-
+        
         if int(message.text) <= 2000:
             si = Decimal(int(message.text)+28)*Decimal(curs)//1
-            proc = si / 100 * 5
+            proc = si / 100 * 5 
             if proc <= 500:
                 proc = 500
             else:
                 pass
-
+            
             kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
             kb1 = types.KeyboardButton(text="Рассчитать стоимость заказа")
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
