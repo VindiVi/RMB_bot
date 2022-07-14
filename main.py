@@ -53,6 +53,7 @@ def currrrs(message):
     matras =cur.execute("SELECT * FROM users").fetchall()
     for i in matras:
         #Programmed by tg:@m0ma1a
+        print(chat_id=i[0])
         bot.send_message(chat_id=i[0], text=f"Актуальный курс - {cursa}\nДля оформления заказа - vk.cc/cf1sGZ\nСпасибо, что остаетесь с нами.")
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
