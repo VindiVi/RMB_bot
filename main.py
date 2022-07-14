@@ -40,6 +40,7 @@ def syrrt(message):
         base.close
     #Programmed by tg:@m0ma1a
     bot.send_message(message.chat.id, f"Приветствую, {message.from_user.username} 🙋\nАктуальный курс - {curs}!", reply_markup=kb_m1)
+    print(message.chat.id)
 def currrrs(message):
     cursa = message.text
     base = sqlite3.connect("db.db")
@@ -86,7 +87,6 @@ def zakazst(message):
         bot.send_message(message.chat.id, "Произошла ошибка, пожалуйста проверьте номер вашего заказа")
 @bot.message_handler(commands=['admin'])#Programmed by tg:@m0ma1a
 def aaaaadd(message):
-    print(message.chat.id)
     if message.chat.id == "936407553":
         kb_ad = types.InlineKeyboardMarkup(row_width=1)
         l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
