@@ -86,7 +86,7 @@ def zakazst(message):
         bot.send_message(message.chat.id, "Произошла ошибка, пожалуйста проверьте номер вашего заказа")
 @bot.message_handler(commands=['admin'])#Programmed by tg:@m0ma1a
 def aaaaadd(message):
-      if message.chat.id == 936407553
+      if message.chat.id == 936407553 :
 #     if message.chat.id == "638426325":
         kb_ad = types.InlineKeyboardMarkup(row_width=1)
         l1 = types.InlineKeyboardButton(text="Добавить таблицу exel",callback_data="ex")
