@@ -6,6 +6,10 @@ import os
 import telebot
 from telebot import types
 from decimal import *
+
+from decouple import config
+API_TOKEN = config('API_TOKEN')
+
 base = sqlite3.connect("db.db")
 cur = base.cursor()
 cur.execute("""CREATE TABLE IF NOT EXiSTS list (
@@ -17,7 +21,7 @@ cur.execute("""CREATE TABLE IF NOT EXiSTS users (
 base.commit()
 base.close()
 
-bot = telebot.TeleBot("5403188495:AAHTFEpSlG9Vp0vChWeOkWsHvhv_r_Tuwy0")
+bot = telebot.TeleBot(API_TOKEN)
 @bot.message_handler(commands=['start'])
 def syrrt(message):
     base = sqlite3.connect("db.db")
