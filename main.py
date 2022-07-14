@@ -52,8 +52,8 @@ def currrrs(message):
     cur = base.cursor()
     matras =cur.execute("SELECT * FROM users").fetchall()
     for i in matras:
-                #Programmed by tg:@m0ma1a
-                bot.send_message(chat_id=i[0], text=f"Актуальный курс - {cursa}\nДля оформления заказа - vk.cc/cf1sGZ\nСпасибо, что остаетесь с нами.")
+        #Programmed by tg:@m0ma1a
+        bot.send_message(chat_id=i[0], text=f"Актуальный курс - {cursa}\nДля оформления заказа - vk.cc/cf1sGZ\nСпасибо, что остаетесь с нами.")
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
     if call.data == "mn":
@@ -72,7 +72,7 @@ def callback_inline(call):
        #Programmed by tg:@m0ma1a
 def zakazst(message):
     try:
-        zakaz = message.text
+        zakaz = message.textа
         base = sqlite3.connect("db.db")
         cur = base.cursor()
         stt = cur.execute(f"SELECT stat FROM cars WHERE brand ='{zakaz}'").fetchone()[0]
