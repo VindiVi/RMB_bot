@@ -51,9 +51,10 @@ def currrrs(message):
     base = sqlite3.connect("db.db")
     cur = base.cursor()
     matras =cur.execute("SELECT * FROM users").fetchall()
+    print('my chat id',message.chat.id)
     for i in matras:
         #Programmed by tg:@m0ma1a
-        print(i[0])
+        print('chat in bd',i[0])
         bot.send_message(chat_id=i[0], text=f"Актуальный курс - {cursa}\nДля оформления заказа - vk.cc/cf1sGZ\nСпасибо, что остаетесь с нами.")
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
