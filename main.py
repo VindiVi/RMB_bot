@@ -30,7 +30,7 @@ def syrrt(message):
     kb_m1 = types.InlineKeyboardMarkup(row_width=1)
     km1 = types.InlineKeyboardButton(text="Меню",callback_data="mn")
     km2 = types.InlineKeyboardButton(text = "Наша группа в VK",url="https://vk.cc/ceYh39")
-    km3 = types.InlineKeyboardButton(text = "Наши отзывы в VK",url = "http://vk.cc/9IZVTn")
+    km3 = types.InlineKeyboardButton(text = "Наши отзывы в VK",url="https://vk.cc/cf8y2b")
     kb_m1.add(km1,km3,km2)
     try:
         freq = cur.execute(f"SELECT * FROM users WHERE id='{message.chat.id}'").fetchone()[0]
@@ -186,7 +186,7 @@ def adaddad(message):
         bot.send_message(message.chat.id,"Выберете пункт в меню ниже",reply_markup=kb_a)
     elif message.text == "Отзывы" :#Programmed by tg:@m0ma1a
         kb_ot = types.InlineKeyboardMarkup()
-        k11 = types.InlineKeyboardButton(text="Отзывы",url="http://vk.cc/9IZVTn")
+        k11 = types.InlineKeyboardButton(text="Отзывы",url="https://vk.cc/cf8y2b")
         kb_ot.add(k11)#Programmed by tg:@m0ma1a
         bot.send_message(message.chat.id,"Отзывы о нашем проекте вы можете посмотреть тут",reply_markup=kb_ot)
     elif message.text == "Оригинальная продукция?":
