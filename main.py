@@ -207,9 +207,9 @@ def chenik(message):
         
         if int(message.text) <= 2000:
             si = Decimal(int(message.text)+28)*Decimal(curs)//1
-            proc = si / 100 * 5 
-            if proc <= 500:
-                proc = 500
+            proc = si / 100 * 7 
+            if proc <= 650:
+                proc = 650
             else:
                 pass
             
@@ -218,12 +218,12 @@ def chenik(message):
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
             kb3 = types.KeyboardButton(text="Частые вопросы по заказам")
             kb_m.add(kb1,kb2,kb3)
-            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
+            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 85 юаней / кг!",reply_markup=kb_m)
         elif int(message.text) > 2000 and int(message.text)<4000:
             si = Decimal(int(message.text)+28)*Decimal(curs)//1
-            proc = si / 100 * 4
-            if proc < 1000:
-                proc = 1000
+            proc = si / 100 * 6
+            if proc < 1200:
+                proc = 1200
             else:
                 pass#Programmed by tg:@m0ma1a
             kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
@@ -231,14 +231,12 @@ def chenik(message):
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
             kb3 = types.KeyboardButton(text="Частые вопросы по заказам")
             kb_m.add(kb1,kb2,kb3)
-            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
+            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 85 юаней / кг!",reply_markup=kb_m)
         elif int(message.text) > 4000:
             si = Decimal(int(message.text)+28)*Decimal(curs)//1
-            proc = si / 1000 * 35
-            print(proc)
-            proc = proc /100
-            if proc < 1600:
-                proc = 1600
+            proc = si / 100 * 5
+            if proc < 2000:
+                proc = 2000
             else:
                 pass#Programmed by tg:@m0ma1a
             kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
@@ -246,7 +244,7 @@ def chenik(message):
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
             kb3 = types.KeyboardButton(text="Частые вопросы по заказам")
             kb_m.add(kb1,kb2,kb3)
-            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
+            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 85 юаней / кг!",reply_markup=kb_m)
     except:#Programmed by tg:@m0ma1a
         bot.send_message(message.chat.id, "Неверная команда")
     base.close()
