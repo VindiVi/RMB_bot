@@ -44,7 +44,7 @@ def currrrs(message):
     cur.execute(f"UPDATE list SET curss = {cursa}")
     base.commit()
     base.close()    
-    bot.send_message(message.chat.id,"Курс успешно измнен")
+    bot.send_message(message.chat.id,"Курс успешно изменен")
     base = sqlite3.connect("db.db")
     cur = base.cursor()
     matras =cur.execute("SELECT * FROM users").fetchall()
@@ -156,14 +156,13 @@ def adaddad(message):
         a = types.ReplyKeyboardRemove()
         msg = bot.send_message(message.chat.id, "Укажите стоимость товара в юанях",reply_markup=a)
         bot.register_next_step_handler(msg,chenik)
-    elif message.text == "Узнать статус заказа":#Programmed by tg:@m0ma1a
+    elif message.text == "Узнать статус заказа":
         msg = bot.send_message(message.chat.id, "Укажите номер заказа")
         bot.register_next_step_handler(msg,zakazst)
     elif message.text == "Группа ВК":
         kb_vk = types.InlineKeyboardMarkup()
         k1 = types.InlineKeyboardButton(text="Группа ВК",url="https://vk.cc/ceYh39")
         kb_vk.add(k1)
-        bot.send_message(message.chat.id,"Подпищись на нашу группу в вконтакте там выходят новости каждый день",reply_markup=kb_vk)
     elif message.text == "Назад":
         kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
         kb1 = types.KeyboardButton(text="Рассчитать стоимость заказа")
@@ -189,7 +188,7 @@ def adaddad(message):
     elif message.text == "Оригинальная продукция?":
         bot.send_message(message.chat.id,f"Да, исключительно оригинальные и аутентичные товары, которые проходят проверку на складе Poizon.\nЛюбые проверки с вашей стороны!")
     elif message.text == "Какой срок доставки?":
-        bot.send_message(message.chat.id,f"Ориентировочный срок доставки 14 - 20 дней не включая доставку с приложения.\nСрок доставки варьируется от выбранной кнопки в приложении.\nУказанные сроки являются приблизительными, и могут отличаться как в меньшую, так и в большую сторону.")
+        bot.send_message(message.chat.id,f"Ориентировочный срок доставки 16 - 22 дня не включая доставку с приложения.\nСрок доставки варьируется от выбранной кнопки в приложении.\nУказанные сроки являются приблизительными, и могут отличаться как в меньшую, так и в большую сторону.")
     elif message.text == "Где можно забрать свой заказ?":
         bot.send_message(message.chat.id,f"После подтверждения,что ваш заказ готов к выдаче, его можно забрать по следующему адресу:\nм.Южная\nг.Москва,ул.Сумская,д.12/17,п.7")
     elif message.text == "Могу ли я забрать заказ курьером?":
@@ -245,34 +244,8 @@ def chenik(message):
             kb3 = types.KeyboardButton(text="Частые вопросы по заказам")
             kb_m.add(kb1,kb2,kb3)
             bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 85 юаней / кг!",reply_markup=kb_m)
-    except:#Programmed by tg:@m0ma1a
+    except:
         bot.send_message(message.chat.id, "Неверная команда")
     base.close()
-bot.polling(non_stop=True)#Programmed by tg:@m0ma1a
+bot.polling(non_stop=True)
 
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
-#Programmed by tg:@m0ma1a
