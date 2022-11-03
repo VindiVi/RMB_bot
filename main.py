@@ -188,7 +188,7 @@ def adaddad(message):
     elif message.text == "Оригинальная продукция?":
         bot.send_message(message.chat.id,f"Да, исключительно оригинальные и аутентичные товары, которые проходят проверку на складе Poizon.\nЛюбые проверки с вашей стороны!")
     elif message.text == "Какой срок доставки?":
-        bot.send_message(message.chat.id,f"Ориентировочный срок доставки 14 - 18 дней не включая доставку с приложения.\nСрок доставки варьируется от выбранной кнопки в приложении.\nУказанные сроки являются приблизительными, и могут отличаться как в меньшую, так и в большую сторону.")
+        bot.send_message(message.chat.id,f"Ориентировочный срок доставки 14 - 22 дня не включая доставку с приложения.\nСрок доставки варьируется от выбранной кнопки в приложении.\nУказанные сроки являются приблизительными, и могут отличаться как в меньшую, так и в большую сторону.")
     elif message.text == "Где можно забрать свой заказ?":
         bot.send_message(message.chat.id,f"После подтверждения,что ваш заказ готов к выдаче, его можно забрать по следующему адресу:\nм.Южная\nг.Москва,ул.Сумская,д.12/17,п.7")
     elif message.text == "Могу ли я забрать заказ курьером?":
@@ -196,19 +196,16 @@ def adaddad(message):
     elif message.text == "Можно ли доставить заказ в другой город?":
         bot.send_message(message.chat.id,f"Да, можно! Мы можем отправить следующими курьерскими службами на ваш выбор:\nСДЭК или Почта России.\nДля этого укажите свои данные для отправки при оформлении заказа.")
 
-#Programmed by tg:@m0ma1a
-
 def chenik(message):
     base = sqlite3.connect("db.db")
     cur = base.cursor()
     curs = cur.execute("SELECT curss FROM list").fetchone()[0]
     try:
-        
         if int(message.text) <= 2500:
             si = Decimal(int(message.text)+28)*Decimal(curs)//1
             proc = si / 100 * 7 
-            if proc <= 700:
-                proc = 700
+            if proc <= 701:
+                proc = 701
             else:
                 pass
             kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
@@ -216,12 +213,12 @@ def chenik(message):
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
             kb3 = types.KeyboardButton(text="Частые вопросы по заказам")
             kb_m.add(kb1,kb2,kb3)
-            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
+            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки из Китая.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
         elif int(message.text) >= 2501:
             si = Decimal(int(message.text)+28)*Decimal(curs)//1
             proc = si / 100 * 6
-            if proc < 1400:
-                proc = 1400
+            if proc < 1401:
+                proc = 1401
             else:
                 pass#Programmed by tg:@m0ma1a
             kb_m = types.ReplyKeyboardMarkup(row_width = 1,resize_keyboard=True)
@@ -229,7 +226,7 @@ def chenik(message):
             kb2 = types.KeyboardButton(text="Узнать статус заказа")
             kb3 = types.KeyboardButton(text="Частые вопросы по заказам")
             kb_m.add(kb1,kb2,kb3)
-            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
+            bot.send_message(message.chat.id,f"Актуальный Курс - {curs}\nИтоговая стоимость заказа - {si+proc//1}\nЦена указана без учета стоимости доставки из Китая.\nДоставка оплачивается при получении товара.\nСтоимость доставки - 130 юаней / кг!",reply_markup=kb_m)
     except:
         bot.send_message(message.chat.id, "Неверная команда")
     base.close()
